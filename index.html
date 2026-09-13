@@ -1739,49 +1739,94 @@ function parseSpokenDate(txt){
   return '';
 }
 function parseClientInto(){
-  const raw = val('c-dict');
-  if(!raw){ toast('Nothing dictated yet'); return; }
-  const t = ' ' + raw.toLowerCase() + ' ';
-  const hits = [];
-  const set = (id, v, label) => { if(v && $(id) && !$(id).value){ $(id).value = v; hits.push(label); } };
+  const raw0 = val('c-dict');
+  if(!raw0){ toast('Nothing dictated yet'); return; }
 
-  // leading clause, if it looks like a name
+  // strip the way people actually open a sentence
+  const raw = raw0.replace(/^\s*(new client|add(?: a)? client|add|this is|her name is|client is|patient is|she(?:'s| is) called)\s+/i,'').trim();
+  const t = ' ' + normalizeNums(ordinals(raw)) + ' ';
+  const plain = ' ' + raw.toLowerCase() + ' ';   // ordinals intact, for "second baby"
+  const hits = [];
+  const set = (id, v, label) => { const e = $(id); if(v && e && !e.value){ e.value = v; hits.push(label); } };
+
+  // name: leading capitalised words, stopping at the first number or keyword
   if($('c-name') && !val('c-name')){
-    const first = raw.split(/[,.]/)[0].trim();
-    if(first && first.split(/\s+/).length <= 4 && /^[A-Z]/.test(first) && !/\d/.test(first)){
-      $('c-name').value = first; hits.push('name');
+    const m = raw.match(/^((?:[A-Z][\w'\-]*\.?\s+){0,3}[A-Z][\w'\-]*)(?=[\s,.]|$)/);
+    if(m){
+      const cand = m[1].trim();
+      if(cand.split(/\s+/).length <= 4 && !/^(G\d|P\d|LMP|EDD|Age|Due)$/i.test(cand)){
+        $('c-name').value = cand; hits.push('name');
+      }
     }
   }
-  const gp = t.match(/\bg\s*(\d+)\s*p\s*(\d+)\b/) || t.match(/gravida\s*(\d+)\D{0,8}para\s*(\d+)/);
-  if(gp) set('c-gp', 'G' + gp[1] + ' P' + gp[2], 'G/P');
 
-  const age = t.match(/\b(\d{2})\s*(?:years old|year old|yo\b|y\/o)/) || t.match(/\bshe(?:'s| is)\s*(\d{2})\b/);
+  // G / P
+  let gp = t.match(/\bg\s*(\d+)\s*[,\s]*p\s*(\d+)\b/) || t.match(/gravida\s*(\d+)\D{0,10}para\s*(\d+)/);
+  if(gp) set('c-gp', 'G' + gp[1] + ' P' + gp[2], 'G/P');
+  else {
+    if(/first (?:pregnancy|baby)|primip|nullip/.test(plain)) set('c-gp','G1 P0','G/P');
+    else if(/second (?:pregnancy|baby)/.test(plain)) set('c-gp','G2 P1','G/P');
+    else if(/third (?:pregnancy|baby)/.test(plain)) set('c-gp','G3 P2','G/P');
+    else if(/fourth (?:pregnancy|baby)/.test(plain)) set('c-gp','G4 P3','G/P');
+    else {
+      const g1 = t.match(/gravida\s*(\d+)/), p1 = t.match(/para\s*(\d+)/);
+      if(g1) set('c-gp','G' + g1[1] + (p1 ? ' P' + p1[1] : ''),'G/P');
+    }
+  }
+
+  // age
+  let age = t.match(/\b(\d{2})\s*(?:years? old|year-old|yo\b|y\/o|yrs?)/)
+         || t.match(/\bage[d]?\s*(?:is\s*)?(\d{2})\b/)
+         || t.match(/\bshe(?:'s| is)\s*(\d{2})\b/);
+  if(!age){
+    // a bare two-digit number right after the name, before any clinical token
+    const head = t.split(/\bg\s*\d|gravida|lmp|last (?:period|menstrual)|due|blood|\b[abo]\s*(?:pos|neg)/)[0];
+    const bare = head.match(/\b(1[5-9]|[2-5]\d)\b/);
+    if(bare) age = bare;
+  }
   if(age) set('c-age', age[1], 'age');
 
-  const bl = t.match(/\b(ab|a|b|o)\s*(positive|negative|pos|neg|\+|-)\b/);
+  // blood type
+  const bl = t.match(/\b(ab|a|b|o)\s*[- ]?\s*(positive|negative|pos|neg|\+|-)\b/);
   if(bl) set('c-blood', bl[1].toUpperCase() + (/^(p|\+)/.test(bl[2]) ? '+' : '-'), 'blood type');
 
-  const lmpTxt = raw.match(/\b(?:lmp|last period|last menstrual\w*)\b([^.,;]*)/i);
+  // dates
+  const lmpTxt = raw.match(/\b(?:lmp|last period|last menstrual\s*\w*)\b([^.,;]*)/i);
   if(lmpTxt){
-    const dISO = parseSpokenDate(lmpTxt[1]);
-    if(dISO){ set('c-lmp', dISO, 'LMP'); if($('c-edd') && !val('c-edd')){ $('c-edd').value = eddFromLMP(dISO); hits.push('EDD from LMP'); } }
+    const dISO = parseSpokenDate(ordinals(lmpTxt[1]));
+    if(dISO){ set('c-lmp', dISO, 'LMP'); if($('c-edd') && !val('c-edd')){ $('c-edd').value = eddFromLMP(dISO); hits.push('due date'); } }
   }
-  const dueTxt = raw.match(/\b(?:due|edd|due date)\b([^.,;]*)/i);
+  const dueTxt = raw.match(/\b(?:due date|due|edd)\b([^.,;]*)/i);
   if(dueTxt){
-    const dISO = parseSpokenDate(dueTxt[1]);
+    const dISO = parseSpokenDate(ordinals(dueTxt[1]));
     if(dISO) set('c-edd', dISO, 'due date');
   }
+
   if(/birth ?cent/.test(t)) set('c-place','Birth center','birth place');
-  else if(/home ?birth|at home/.test(t)) set('c-place','Home','birth place');
+  else if(/home ?birth|at home|planning a home/.test(t)) set('c-place','Home','birth place');
   else if(/hospital/.test(t)) set('c-place','Hospital','birth place');
 
   const ph = raw.match(/\b(\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})\b/);
   if(ph) set('c-phone', ph[1], 'phone');
 
-  $('c-dict-report').innerHTML = hits.length
-    ? `<p class="hint" style="margin-top:8px">${hits.join(', ')}</p>`
-    : `<p class="hint" style="margin-top:8px">Nothing recognized.</p>`;
-  toast(hits.length ? 'Filled ' + hits.length + ' field' + (hits.length===1?'':'s') : 'Nothing recognized');
+  const blank = [['c-name','name'],['c-age','age'],['c-gp','G/P'],['c-edd','due date']]
+    .filter(f => !val(f[0])).map(f => f[1]);
+  $('c-dict-report').innerHTML =
+    (hits.length ? `<p class="hint" style="margin-top:8px">${hits.join(', ')}</p>` : '') +
+    (blank.length ? `<p class="hint" style="margin-top:6px;color:var(--rust)">still blank: ${blank.join(', ')}</p>` : '');
+  toast(hits.length ? 'Filled ' + hits.length : 'Nothing recognized');
+}
+
+// spoken ordinals -> digits, so "January tenth" parses
+function ordinals(txt){
+  const O = {first:1,second:2,third:3,fourth:4,fifth:5,sixth:6,seventh:7,eighth:8,ninth:9,
+    tenth:10,eleventh:11,twelfth:12,thirteenth:13,fourteenth:14,fifteenth:15,sixteenth:16,
+    seventeenth:17,eighteenth:18,nineteenth:19,twentieth:20,thirtieth:30,
+    'twenty-first':21,'twenty-second':22,'twenty-third':23,'twenty-fourth':24,'twenty-fifth':25,
+    'twenty-sixth':26,'twenty-seventh':27,'twenty-eighth':28,'twenty-ninth':29,'thirty-first':31};
+  let out = txt;
+  for(const k in O) out = out.replace(new RegExp('\\b' + k.replace('-','[- ]') + '\\b','gi'), O[k]);
+  return out;
 }
 
 // Records
