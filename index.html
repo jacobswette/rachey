@@ -20,8 +20,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   color-scheme:light;
-  /* pulled from the board: laid paper, linocut rust, quilt-floral black-brown,
-     pine, moonlit blue, unbleached muslin */
+  
   --paper:#F3ECDA;
   --linen:#E9DFC7;
   --card:#FBF7EC;
@@ -33,9 +32,9 @@
   --rust-wash:#F0DCC5;
   --clay:#DFB48C;
   --night:#2E4A5A;
-  --sky:#A6C3D3;          /* the light blue window frames */
-  --cedar:#8C8377;        /* cedar shake, weathered silver-grey */
-  /* courses of cedar shake, laid over whatever colour sits beneath */
+  --sky:#A6C3D3;          /* window-frame blue */
+  --cedar:#8C8377;        
+  /* cedar shake courses */
   --shake:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='30' viewBox='0 0 40 30'%3E%3Cg stroke='%23000' stroke-opacity='.2' stroke-width='1' fill='none'%3E%3Cpath d='M0 15h40M0 30h40'/%3E%3C/g%3E%3Cg stroke='%23000' stroke-opacity='.13' stroke-width='1' fill='none'%3E%3Cpath d='M0 0v15M11 0v15M22 0v15M31 0v15'/%3E%3Cpath d='M5 15v15M16 15v15M27 15v15M36 15v15'/%3E%3C/g%3E%3Cg stroke='%23fff' stroke-opacity='.055' stroke-width='1' fill='none'%3E%3Cpath d='M0 16h40M0 1h40'/%3E%3C/g%3E%3C/svg%3E");
   --fog:#8A9A8E;
   --ink:#2A241E;
@@ -46,9 +45,9 @@
   --flag-wash:#F4E0D5;
   --r:4px;
   --safe-b:env(safe-area-inset-bottom,0px);
-  /* laid-paper grain, reused wherever a surface should read as paper */
+  /* laid-paper grain */
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
-  /* pieced sawtooth, the quilt figure that runs through the whole thing */
+  /* sawtooth */
   --tooth:linear-gradient(135deg,var(--rust) 25%,transparent 25%),linear-gradient(225deg,var(--rust) 25%,transparent 25%);
 }
 html{background:var(--paper)}
@@ -68,7 +67,7 @@ body{
 .view{display:none;padding-top:16px}
 .view.on{display:block}
 
-/* ---------- masthead: an inked block ---------- */
+/* masthead */
 header{
   background-color:var(--pine);   /* her green */
   background-image:var(--shake),var(--grain);
@@ -85,19 +84,19 @@ header{
 .mast-ga b{display:block;font-family:'Alegreya',serif;font-size:1.22rem;color:#F1E9D6;font-weight:500;letter-spacing:0}
 .sawtooth{height:7px;display:block;width:100%}
 
-/* ---------- type ---------- */
+/* type */
 h2.page{font-family:'Alegreya',Georgia,serif;font-size:1.85rem;font-weight:500;letter-spacing:.002em;line-height:1.15;margin-bottom:3px}
 .page-note{font-family:'Alegreya',serif;font-style:italic;font-size:1rem;color:var(--ink2);margin-bottom:20px;max-width:44ch;line-height:1.5}
 h3.sec{font-family:'Alegreya',Georgia,serif;font-size:1.2rem;font-weight:500;margin-bottom:11px;display:flex;align-items:center;gap:10px}
 h3.sec::before{content:'';width:9px;height:9px;background:var(--rust);transform:rotate(45deg);flex-shrink:0}
 h3.sec::after{content:'';flex:1;height:1px;background:var(--rule)}
 
-/* ---------- cards: pasted patches, not floating panels ---------- */
+/* cards */
 .card{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:17px;margin-bottom:15px}
 .card.flat{background:transparent;border:none;padding:0}
 .card-h{font-family:'Alegreya',Georgia,serif;font-size:1.16rem;font-weight:500;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
 
-/* ---------- buttons: inked blocks ---------- */
+/* buttons */
 button{font-family:'Atkinson Hyperlegible',sans-serif;cursor:pointer;border:none;background:none;color:inherit;font-size:1rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;
   background:var(--pine);color:#F3ECDA;border:1.5px solid var(--pine);border-radius:var(--r);
@@ -114,7 +113,7 @@ button{font-family:'Atkinson Hyperlegible',sans-serif;cursor:pointer;border:none
 .btn-row{display:flex;gap:9px;flex-wrap:wrap}
 .btn-row .btn{flex:1;min-width:132px}
 
-/* ---------- form ---------- */
+/* form */
 label.lbl{display:block;font-size:.76rem;font-weight:700;letter-spacing:.03em;color:var(--ink2);margin-bottom:5px}
 input[type=text],input[type=number],input[type=date],input[type=time],input[type=tel],textarea,select{
   width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:var(--r);
@@ -127,7 +126,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--pine);box-shadow:inse
 .f3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:14px}
 .hint{font-family:'Alegreya',serif;font-style:italic;font-size:.86rem;color:var(--ink3);margin-top:5px;line-height:1.4}
 
-/* ---------- chips: swatches ---------- */
+/* chips */
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
 .chip{padding:8px 13px;border:1.5px solid var(--rule);border-radius:var(--r);background:#FFFDF7;
   font-size:.86rem;color:var(--ink2);transition:background .1s,border-color .1s,color .1s;line-height:1.2}
@@ -139,7 +138,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--pine);box-shadow:inse
 .scale{display:flex;gap:5px;flex-wrap:wrap}
 .scale .chip{flex:1;min-width:56px;padding:8px 4px;text-align:center;justify-content:center}
 
-/* ---------- client rows ---------- */
+/* client rows */
 .clientrow{display:flex;align-items:center;gap:13px;padding:13px 14px;background:var(--card);
   border:1px solid var(--rule);border-radius:var(--r);margin-bottom:9px;transition:border-color .12s;width:100%;text-align:left}
 .clientrow:active{border-color:var(--pine)}
@@ -152,7 +151,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--pine);box-shadow:inse
 .cl-ga b{font-family:'Alegreya',serif;font-size:1.28rem;font-weight:500;color:var(--pine);display:block;line-height:1}
 .cl-ga span{font-family:'Alegreya',serif;font-style:italic;font-size:.78rem;color:var(--ink3)}
 
-/* ---------- flags and reminders ---------- */
+/* flags and reminders */
 .flag{background:var(--flag-wash);border:1px solid #DDB6A4;border-left:5px solid var(--flag);
   border-radius:var(--r);padding:13px 15px;margin-bottom:13px;font-size:.88rem;color:#5B2214;line-height:1.5}
 .flag b{display:block;font-family:'Alegreya',serif;font-style:italic;font-weight:500;font-size:1.02rem;margin-bottom:5px}
@@ -165,7 +164,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--pine);box-shadow:inse
 .due-item{display:flex;gap:9px;align-items:flex-start;margin-bottom:5px;line-height:1.45}
 .due-item::before{content:'';width:6px;height:6px;background:var(--rust);transform:rotate(45deg);margin-top:7px;flex-shrink:0}
 
-/* ---------- the note: a printed sheet ---------- */
+/* note sheet */
 .note{background-color:var(--card);background-image:var(--grain);background-blend-mode:multiply;
   border:1px solid var(--rule);border-radius:var(--r);padding:0;margin-bottom:13px;overflow:hidden}
 .note::before{content:'';display:block;height:7px;background-image:var(--tooth);background-size:14px 14px;background-position:0 0}
@@ -174,7 +173,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--pine);box-shadow:inse
 .note textarea{min-height:340px;border:none;width:100%;border-radius:0}
 .note textarea:focus{box-shadow:none}
 
-/* ---------- labor log ---------- */
+/* labor log */
 .logrow{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:.9rem;align-items:flex-start}
 .logrow:last-child{border-bottom:none}
 .logtime{font-weight:700;font-size:.85rem;color:var(--rust);flex-shrink:0;width:68px;padding-top:1px;letter-spacing:.01em}
@@ -185,14 +184,14 @@ input:focus,textarea:focus,select:focus{border-color:var(--pine);box-shadow:inse
   font-size:.88rem;font-weight:700;color:var(--pine);line-height:1.25}
 .quickgrid button:active{background:var(--pine-wash);transform:translateY(1px)}
 
-/* ---------- timer ---------- */
+/* timer */
 .timer{background-color:var(--night);background-image:var(--grain);background-blend-mode:overlay;
   color:#EBE3D2;border-radius:var(--r);padding:20px;text-align:center;margin-bottom:13px}
 .timer-big{font-family:'Alegreya',serif;font-size:2.9rem;font-weight:400;line-height:1;letter-spacing:.01em}
 .timer-lbl{font-family:'Alegreya',serif;font-style:italic;font-size:.9rem;color:#9FB3BC;margin-top:6px}
 .ctx-row{display:flex;justify-content:space-between;font-size:.84rem;padding:8px 0;border-bottom:1px solid var(--rule)}
 
-/* ---------- tab bar: a printed footer rule ---------- */
+/* tab bar */
 nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:60;
   background-color:#F6F0E1;background-image:var(--grain);background-blend-mode:multiply;
   border-top:1px solid var(--rule);padding-bottom:var(--safe-b)}
@@ -203,7 +202,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:60;
 .tab.on::after{content:'';position:absolute;bottom:3px;width:5px;height:5px;background:var(--rust);transform:rotate(45deg)}
 .tab svg{width:21px;height:21px;stroke-width:1.6}
 
-/* ---------- misc ---------- */
+/* misc */
 .empty{text-align:center;padding:48px 20px;color:var(--ink2)}
 .empty svg{width:46px;height:46px;stroke:var(--clay);stroke-width:1.1;margin-bottom:14px}
 .empty p{font-family:'Alegreya',serif;font-size:1.24rem;margin-bottom:7px;color:var(--ink)}
@@ -240,88 +239,78 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:60;
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media print{nav.tabs,header,.btn,.btn-row{display:none!important}body{padding:0;background:#fff;background-image:none}
   .note{border:none;background:#fff;background-image:none}.note::before{display:none}}
-/* ============================================================
-   SAMPLER BANDS, PIECED WORK, AND WOVEN CLOTH
-   A New England schoolgirl sampler is built from bands: a row
-   of stitched motifs, then text, then another band. That is the
-   organizing idea for everything below.
-   ============================================================ */
+/* sampler bands and pieced work */
 :root{
-  /* stitched band — diamond, cross, diamond — the sampler border */
+  /* sampler border */
   --band:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='7' viewBox='0 0 16 7'%3E%3Cg fill='%23B85A2E' fill-opacity='.62'%3E%3Cpath d='M4 1.2 L6.3 3.5 L4 5.8 L1.7 3.5 Z'/%3E%3Crect x='10.4' y='3.1' width='3.4' height='.85'/%3E%3Crect x='11.7' y='1.8' width='.85' height='3.4'/%3E%3C/g%3E%3C/svg%3E");
   /* the same band in a quieter thread, for places that must not shout */
   --band-soft:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='7' viewBox='0 0 16 7'%3E%3Cg fill='%23BEA478'%3E%3C/g%3E%3Cg fill='%23BEA478'%3E%3Cpath d='M4 1.2 L6.3 3.5 L4 5.8 L1.7 3.5 Z'/%3E%3Crect x='10.4' y='3.1' width='3.4' height='.85'/%3E%3Crect x='11.7' y='1.8' width='.85' height='3.4'/%3E%3C/g%3E%3C/svg%3E");
-  /* plain weave — warp and weft, for anything meant to read as cloth */
+  /* plain weave */
   --weave:repeating-linear-gradient(0deg,rgba(42,36,30,.028) 0 1px,transparent 1px 7px),
           repeating-linear-gradient(90deg,rgba(42,36,30,.028) 0 1px,transparent 1px 7px);
-  /* half-square triangles, the simplest quilt unit */
+  /* half-square triangles */
   --hst:linear-gradient(135deg,rgba(184,90,46,.16) 25%,transparent 25%),
         linear-gradient(225deg,rgba(184,90,46,.16) 25%,transparent 25%);
 }
 
-/* ---- letterpress: ink pressed into paper leaves a lit edge below ---- */
+/* letterpress */
 h2.page,h3.sec,.card-h,.sheet-h,.empty p,.cl-ga b,.due b,.flag b,.timer-big{
   text-shadow:0 1px 0 rgba(255,253,246,.7)}
 .mast-name,.timer-big{text-shadow:0 1px 0 rgba(0,0,0,.22)}
 .timer-big{text-shadow:0 1px 0 rgba(0,0,0,.3)}
 
-/* ---- cards are cut from cloth, not glass ---- */
+/* woven card ground */
 .card{background-image:var(--weave);background-blend-mode:multiply;position:relative}
-/* a pieced triangle at the corner, the way a quilt block starts */
+/* pieced corner */
 .card::after{content:'';position:absolute;top:0;right:0;width:0;height:0;
   border-top:11px solid var(--clay);border-left:11px solid transparent;opacity:.4;border-top-right-radius:var(--r)}
 
-/* ---- section heads: text set between stitched bands ---- */
+/* section heads */
 h3.sec::after{height:7px;background:var(--band-soft) repeat-x center;opacity:.9}
 h3.sec::before{width:10px;height:10px}
 .card-h{border-bottom:none;padding-bottom:11px;background:var(--band-soft) repeat-x bottom;background-size:16px 7px}
 .sheet-h{border-bottom:none;padding-bottom:13px;background:var(--band) repeat-x bottom;background-size:16px 7px}
 .due b{border-bottom:1px solid var(--clay);padding-bottom:7px}
 
-/* ---- the note as a daybook page: ruled, with a pieced head and foot ---- */
+/* daybook ruling */
 .note pre,.note textarea{
   background-image:repeating-linear-gradient(180deg,transparent 0 calc(1.75em - 1px),rgba(184,90,46,.075) calc(1.75em - 1px),rgba(184,90,46,.075) 1.75em);
   background-position:0 22px;background-attachment:local}
 .note::after{content:'';display:block;height:7px;background-image:var(--tooth);background-size:14px 14px;transform:scaleY(-1)}
 
-/* ---- quick-tap labor buttons read as woven tape ---- */
+/* labor buttons */
 .quickgrid button{background-image:var(--weave);background-blend-mode:multiply}
 .avatar{background-image:var(--weave);background-blend-mode:multiply}
 
-/* ---- the roster row gets a pieced edge when it is the chosen one ---- */
+/* selected roster row */
 .clientrow.pick{background-image:var(--hst);background-size:20px 20px;background-repeat:no-repeat;background-position:top right}
 
-/* ---- reminders sit on a stitched ground ---- */
+/* reminders */
 
-/* ---- tab bar: a punched-tin rule ---- */
+/* tab bar rule */
 nav.tabs{border-top:none;box-shadow:inset 0 1px 0 var(--rule)}
 nav.tabs::before{content:'';display:block;height:7px;background:var(--band-soft) repeat-x center;opacity:.55}
 
-/* ---- the masthead is bounded top and bottom, like a sampler's field ---- */
+/* masthead rule */
 .mast-rule{height:6px;display:block;width:100%;background-image:
   linear-gradient(135deg,#DFB48C 25%,transparent 25%),linear-gradient(225deg,#DFB48C 25%,transparent 25%);
   background-size:12px 12px;opacity:.5}
 
-/* ---- empty states get a woodcut, not a line icon ---- */
+/* empty state art */
 .empty svg{width:auto;height:120px;max-width:100%;stroke:none;margin-bottom:18px}
 
-/* ---- dictation card: this one is meant to be noticed ---- */
+/* dictation card */
 #p-dict,#pp-dict{background:#FFFDF7}
 
-/* ---- each screen opens with a title, a stitched band, then the note ---- */
+/* page title band */
 h2.page{padding-bottom:11px;margin-bottom:10px;background:var(--band) repeat-x bottom;background-size:16px 7px}
 .page-note{margin-bottom:22px}
-/* the pieced corner is for cloth cards only */
+/* no corner on flat cards */
 .card.flat::after{display:none}
 @media print{.card::after,.note::after,nav.tabs::before{display:none}
   .note pre{background-image:none}}
 
-/* ============================================================
-   DESK LAYOUT
-   She works with Athena open beside this. Two panes: the form she
-   fills, and the note assembling itself in real time to be copied.
-   Sized to sit in half a laptop screen (~700px) and to grow from there.
-   ============================================================ */
+/* Desk layout */
 @media (min-width: 900px){
   body{padding-bottom:0}
   header{position:sticky;top:0;z-index:70}
@@ -374,7 +363,7 @@ h2.page{padding-bottom:11px;margin-bottom:10px;background:var(--band) repeat-x b
 .kbd{font-family:'Atkinson Hyperlegible',sans-serif;font-size:.68rem;color:var(--ink3);
   text-align:center;padding-top:7px}
 
-/* hide the in-form output pane once the live pane is showing */
+/* live pane replaces the in-form output */
 @media (min-width: 1240px){
   #p-out:not(:empty),#pp-out:not(:empty),#b-out:not(:empty){display:none}
   .view > button.btn.wide[onclick^="build"]{display:none}
@@ -428,35 +417,35 @@ h2.page{padding-bottom:11px;margin-bottom:10px;background:var(--band) repeat-x b
 <div class="wrap">
 <main id="main">
 
-  <!-- ============ TODAY ============ -->
+  <!-- today -->
   <section class="view on" id="v-today">
     <h2 class="page" id="today-greet">Good morning</h2>
     <p class="page-note" id="today-date"></p>
     <div id="today-body"></div>
   </section>
 
-  <!-- ============ PRENATAL ============ -->
+  <!-- prenatal -->
   <section class="view" id="v-prenatal">
     <h2 class="page">Prenatal visit</h2>
     
     <div id="prenatal-body"></div>
   </section>
 
-  <!-- ============ BIRTH ============ -->
+  <!-- birth -->
   <section class="view" id="v-birth">
     <h2 class="page">Labor &amp; birth</h2>
     
     <div id="birth-body"></div>
   </section>
 
-  <!-- ============ POSTPARTUM ============ -->
+  <!-- postpartum -->
   <section class="view" id="v-pp">
     <h2 class="page">Postpartum &amp; newborn</h2>
     
     <div id="pp-body"></div>
   </section>
 
-  <!-- ============ RECORDS ============ -->
+  <!-- records -->
   <section class="view" id="v-records">
     <h2 class="page">Clients &amp; notes</h2>
     
@@ -485,21 +474,17 @@ h2.page{padding-bottom:11px;margin-bottom:10px;background:var(--band) repeat-x b
 <div class="toast" id="toast"></div>
 
 <script>
-/* ============================================================
-   Rachey — local-first midwifery charting
-   No server. No accounts. No network calls.
-   All data is kept in this browser's localStorage.
-   ============================================================ */
+// Rachey — local-first midwifery charting
 
 const KEY = 'rachey_v1';
-/* var, not let: inline onclick handlers resolve against window */
+// var not let — inline onclick handlers resolve against window
 var DB = {clients:[], notes:[], labor:{}, ctx:[], settings:{practice:'', midwife:''}};
 var cur = null;          // selected client id
 var sel = {};            // transient chip selections for the open form
 var lastNote = '';
 var ctxTimer = null, ctxStart = null;
 
-/* ---------- persistence ---------- */
+// persistence
 function load(){
   try{
     const raw = localStorage.getItem(KEY);
@@ -518,7 +503,7 @@ function save(){
 }
 function setCur(id){ cur = id; localStorage.setItem(KEY+'_cur', id||''); }
 
-/* ---------- small utils ---------- */
+// utils
 const $ = id => document.getElementById(id);
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const val = id => { const e=$(id); return e ? e.value.trim() : ''; };
@@ -554,9 +539,7 @@ function initials(name){
   return (p[0][0] + (p.length>1 ? p[p.length-1][0] : '')).toUpperCase();
 }
 
-/* ---------- gestational age ----------
-   EDD by Naegele's rule = LMP + 280 days.
-   GA on a given date = 280 - (days remaining until EDD).           */
+// Naegele: EDD = LMP + 280d. GA = 280 - days left until EDD.
 function gaOn(edd, onISO){
   if(!edd) return null;
   const on = new Date((onISO||todayISO())+'T12:00:00');
@@ -576,7 +559,7 @@ function eddFromLMP(lmp){ return lmp ? addDays(lmp, 280) : ''; }
 function getClient(id){ return DB.clients.find(c=>c.id===id) || null; }
 function curClient(){ return cur ? getClient(cur) : null; }
 
-/* ---------- chip state ---------- */
+// chip state
 function pick(group, value, multi, el){
   if(multi){
     sel[group] = sel[group] || [];
@@ -605,7 +588,7 @@ function chipGroup(label, group, opts, multi, warnSet, scale){
 }
 function selList(group){ return (sel[group]||[]).join(', '); }
 
-/* ---------- navigation ---------- */
+// navigation
 function go(v){
   document.querySelectorAll('.view').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.v===v));
@@ -637,7 +620,7 @@ function openSheet(title, html){
 }
 function closeSheet(){ $('sheet').classList.remove('on'); }
 
-/* ---------- client picker (shared by every form) ---------- */
+// client picker (shared by every form)
 function clientPicker(){
   if(!DB.clients.length){
     return `<div class="card"><div class="card-h">No clients</div>
@@ -668,7 +651,7 @@ function currentView(){
   return on ? on.id.replace('v-','') : 'today';
 }
 
-/* ---------- add / edit client ---------- */
+// add / edit client
 function addClientSheet(id){
   const c = id ? getClient(id) : null;
   openSheet(c ? 'Edit client' : 'Add a client', `
@@ -727,7 +710,7 @@ function deleteClient(id){
   save(); closeSheet(); render(currentView()); toast('Deleted');
 }
 
-/* ---------- notes store ---------- */
+// notes store
 function saveNote(kind, text){
   const c = curClient();
   DB.notes.unshift({id:uid(), client:cur, clientName:c?c.name:'Unassigned', kind,
@@ -735,8 +718,7 @@ function saveNote(kind, text){
   save();
   if(!firstNote()) toast('Filed');
 }
-/* Fires once, ever, the first time a finished note leaves the app —
-   whether she copies it or files it. */
+// once ever, on the first note copied or filed
 function firstNote(){
   if(DB.settings.greeted) return false;
   DB.settings.greeted = true; save();
@@ -770,7 +752,7 @@ function printText(title, t){
   w.document.close();
 }
 
-/* ---------- shared note output block ---------- */
+// shared note output block
 function noteBlock(text, kind, title){
   lastNote = text;
   return `<div class="note"><pre id="note-pre">${esc(text)}</pre>
@@ -804,9 +786,7 @@ function toggleAcc(id){
   $(id+'-a').textContent = b.classList.contains('on') ? '\u2212' : '+';
 }
 
-/* ============================================================
-   TODAY
-   ============================================================ */
+// Today
 function renderToday(){
   const h = new Date().getHours();
   $('today-greet').textContent =
@@ -909,13 +889,9 @@ function noteCardHTML(n){
     <div class="notecard-p">${esc(n.text.replace(/\n+/g,' ').slice(0,150))}</div></button>`;
 }
 
-/* ============================================================
-   PRENATAL
-   ============================================================ */
+// Prenatal
 
-/* Routine care milestones by gestational week. These are reminders
-   drawn from ordinary prenatal practice, not instructions — Rachel
-   decides what is offered, declined, or skipped. */
+// reminders only; Rachel decides what's actually offered
 const MILESTONES = [
   {a:0,  b:13, items:['Intake labs if not done: CBC, type &amp; Rh, antibody screen, rubella, HBsAg, HIV, syphilis, HCV, urine culture','Dating confirmed by LMP or early ultrasound','Prenatal vitamin, folate, hydration reviewed','Informed disclosure and practice agreement signed']},
   {a:10, b:14, items:['Optional: cell-free DNA screening / first trimester screening discussed']},
@@ -1021,9 +997,7 @@ function nextVisitDate(c){
 }
 function onChipChange(){ checkFlags(); if(typeof scheduleLive === 'function') scheduleLive(); }
 
-/* Threshold reminders. These restate commonly used prenatal
-   thresholds so nothing gets missed on a long day. They are prompts
-   to look again, not a judgment about what to do. */
+// standard thresholds, surfaced so they don't get missed on a long day
 function checkFlags(){
   const box = $('flags'); if(!box) return;
   const c = curClient(); const g = c ? gaOn(c.edd) : null;
@@ -1168,9 +1142,7 @@ function listify(arr){
   return arr.slice(0,-1).join(', ') + ', and ' + arr[arr.length-1];
 }
 
-/* ============================================================
-   LABOR & BIRTH
-   ============================================================ */
+// Labor & birth
 function laborLog(){ if(!DB.labor[cur]) DB.labor[cur] = []; return DB.labor[cur]; }
 
 function renderBirth(){
@@ -1343,9 +1315,7 @@ function buildBirthNote(){
   $('b-out').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-/* ============================================================
-   POSTPARTUM & NEWBORN
-   ============================================================ */
+// Postpartum & newborn
 function renderPP(){
   const c = curClient();
   if(!c){ $('pp-body').innerHTML = clientPicker(); return; }
@@ -1702,9 +1672,7 @@ function buildNewborn(preview){
   $('pp-out').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-/* ============================================================
-   CLIENT HUB — one screen per client, as the anchor
-   ============================================================ */
+// CLIENT HUB — one screen per client, as the anchor
 function openClient(id){
   setCur(id);
   const c = getClient(id); if(!c) return;
@@ -1752,7 +1720,7 @@ function startNote(tab, mode){
   go(tab);
 }
 
-/* ---------- dictating a new client ---------- */
+// dictating a new client
 const MONTHS = {january:1,february:2,march:3,april:4,may:5,june:6,july:7,august:8,
   september:9,october:10,november:11,december:12,jan:1,feb:2,mar:3,apr:4,jun:6,jul:7,
   aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
@@ -1777,7 +1745,7 @@ function parseClientInto(){
   const hits = [];
   const set = (id, v, label) => { if(v && $(id) && !$(id).value){ $(id).value = v; hits.push(label); } };
 
-  /* name: the leading clause, if it looks like one and the field is empty */
+  // leading clause, if it looks like a name
   if($('c-name') && !val('c-name')){
     const first = raw.split(/[,.]/)[0].trim();
     if(first && first.split(/\s+/).length <= 4 && /^[A-Z]/.test(first) && !/\d/.test(first)){
@@ -1816,9 +1784,7 @@ function parseClientInto(){
   toast(hits.length ? 'Filled ' + hits.length + ' field' + (hits.length===1?'':'s') : 'Nothing recognized');
 }
 
-/* ============================================================
-   RECORDS
-   ============================================================ */
+// Records
 function renderRecords(){
   const notes = DB.notes;
   $('records-body').innerHTML = `
@@ -1917,12 +1883,7 @@ function wipe(){
   cur = null; go('today'); toast('Erased');
 }
 
-/* ============================================================
-   DICTATION
-   Speech goes to text, then a local parser reads the text and
-   fills the form. The parsing never leaves this device: it is
-   plain pattern matching, no model and no network.
-   ============================================================ */
+// Dictation
 
 var rec = null, recTarget = null, recBase = '';
 var micBtnId = 'mic-btn';
@@ -1951,7 +1912,7 @@ function dictationCard(targetId, kind){
   </div>`;
 }
 
-/* what the operating system offers, which is the private option */
+// OS dictation keeps audio on the device; the in-app mic doesn't
 function sysDictation(){
   const ua = navigator.userAgent || '', pf = navigator.platform || '';
   if(/iPhone|iPad|iPod/.test(ua)) return 'Tap the microphone key on your keyboard.';
@@ -1998,7 +1959,7 @@ function micStop(){
   if(btn){ btn.innerHTML = 'Start dictating'; btn.classList.remove('rust'); }
 }
 
-/* ---------- number words ---------- */
+// number words
 const NUMW = {zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,
   eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,
   nineteen:19,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
@@ -2020,7 +1981,7 @@ function normalizeNums(t){
   return s;
 }
 
-/* ---------- level detection near a keyword ---------- */
+// level detection near a keyword
 function levelToken(win){
   if(/\b3\s*\+|\bthree plus/.test(win)) return '3+';
   if(/\b2\s*\+|\btwo plus/.test(win)) return '2+';
@@ -2040,7 +2001,7 @@ function levelNear(t, words){
   return null;
 }
 
-/* ---------- negation-aware keyword test ---------- */
+// negation-aware keyword test
 function said(t, re){
   const m = t.match(re);
   if(!m) return false;
@@ -2117,7 +2078,7 @@ const ORD_MAP = [
   [/nothing today|nothing ordered|no labs/, 'Nothing today']
 ];
 
-/* ---------- the prenatal parser ---------- */
+// the prenatal parser
 function parsePrenatal(sentence, out){
   const t = normalizeNums(sentence);
 
@@ -2127,9 +2088,8 @@ function parsePrenatal(sentence, out){
   const wt = t.match(/\b(\d{2,3}(?:\.\d)?)\s*(?:pounds|lbs?|kilos?|kgs?)\b/) || t.match(/weigh\w*\D{0,8}(\d{2,3}(?:\.\d)?)/);
   if(wt){ out.vals['p-wt'] = wt[1] + (/kilo|kg/.test(t) ? ' kg' : ' lb'); out.hits.push('Weight ' + out.vals['p-wt']); out.fired = true; }
 
-  /* Pulse and temp have no field and no place in her note template — they go
-     in the Athena flow sheet. Deliberately not consumed here, so a sentence
-     mentioning them still falls through to the free text box. */
+  // pulse and temp live in the Athena flow sheet, not the note.
+  // left unparsed on purpose so those sentences reach the free text box.
 
   const fh = t.match(/(?:fundal height|fundus|measuring|measures|\bfh\b)\D{0,14}(\d{1,2})\b/);
   if(fh && +fh[1] >= 8 && +fh[1] <= 50){ out.vals['p-fh'] = fh[1]; out.hits.push('Fundal height ' + fh[1] + ' cm'); out.fired = true; }
@@ -2207,11 +2167,11 @@ function parsePrenatal(sentence, out){
   }
 }
 
-/* ---------- the postpartum parser ---------- */
+// the postpartum parser
 function parsePP(sentence, out){
   const t = normalizeNums(sentence);
 
-  /* Newborn measurements — these have fields on the newborn form. */
+  // newborn form fields
   const wt = t.match(/(?:weigh\w*|weight)\D{0,10}(\d{1,2})\s*(?:pounds|lbs?)\D{0,6}(\d{1,2})?\s*(?:ounces|oz)?/);
   if(wt){ out.vals['nb-wt'] = wt[1] + ' lb' + (wt[2] ? ' ' + wt[2] + ' oz' : ''); out.hits.push('baby weight'); out.fired = true; }
   else {
@@ -2223,7 +2183,7 @@ function parsePP(sentence, out){
   const st = t.match(/(\d{1,2})\s*(?:stools?|dirty|soiled|poops?)/);
   if(st){ out.vals['nb-stool'] = st[1]; out.hits.push(st[1] + ' soiled'); out.fired = true; }
 
-  /* Newborn screening chips. */
+  // screening chips
   if(/cchd|pulse ox/.test(t)){ out.vals['nb-cchd'] = /fail/.test(t) ? 'FAIL' : 'PASS'; out.hits.push('CCHD ' + out.vals['nb-cchd']); out.fired = true; }
   if(/metabolic screen|newborn screen|heel ?stick|\bpku\b/.test(t)){
     out.sel.nbnbs = /declin|refus/.test(t) ? 'Declined' : 'Collected today, sent to lab, results pending';
@@ -2241,8 +2201,8 @@ function parsePP(sentence, out){
   if(/lethargic|sleepy|hard to wake|difficulty latching|poor feeding/.test(t)){ out.sel.nbfeed = 'Abnormal'; out.fired = true; }
   if(/temps? (?:were|have been|are) (?:off|low|high|abnormal)|hypothermi|febrile/.test(t)){ out.sel.nbtemp = 'Abnormal'; out.fired = true; }
 
-  /* Postpartum: route whole clauses into the S rows her template uses.
-     First matching row wins, so one sentence fills one row. */
+  // route whole clauses into her S rows. first match wins, so one
+  // sentence fills one row.
   const ROWS = [
     [/breastfeed|nursing|latch|feeding|bottle|formula/, 'pp-feed'],
     [/breast|engorge|nipple|milk|mastitis|duct/,        'pp-breast'],
@@ -2264,7 +2224,7 @@ function parsePP(sentence, out){
   }
 }
 
-/* ---------- run it and apply ---------- */
+// run it and apply
 function parseInto(targetId, kind){
   const text = $(targetId) ? $(targetId).value.trim() : '';
   if(!text){ toast('Nothing dictated yet'); return; }
@@ -2316,11 +2276,7 @@ function repaintChips(){
   });
 }
 
-/* ============================================================
-   LIVE NOTE + RAIL
-   The note assembles as she fills the form, so the workflow is
-   fill, copy, paste into Athena. No generate step.
-   ============================================================ */
+// Live note + rail
 var liveTimer = null, liveText = '';
 
 function liveKind(){
@@ -2366,7 +2322,7 @@ function fileLive(){
   saveNote(kind[0], liveText);
 }
 
-/* The one line that stops her typing the same numbers into the flow sheet. */
+// one line to paste into the flow sheet instead of retyping
 function copyFlow(){
   const bits = [];
   if(val('p-bp')) bits.push('BP ' + val('p-bp'));
@@ -2386,7 +2342,7 @@ function copyFlow(){
   copyText(bits.join('  ·  '));
 }
 
-/* left rail: the caseload, always one click away */
+// caseload rail
 function renderRail(){
   const r = $('rail'); if(!r) return;
   if(!DB.clients.length){
@@ -2405,7 +2361,7 @@ function renderRail(){
     '<button class="railrow" onclick="addClientSheet()" style="margin-top:6px;color:var(--ink2)"><span class="rn">+ Add a client</span></button>';
 }
 
-/* recompute on every edit anywhere in the work area */
+// recompute on any edit in the work area
 document.addEventListener('input', function(e){
   if(e.target.closest && e.target.closest('#main')) scheduleLive();
 });
@@ -2418,21 +2374,15 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-/* ============================================================
-   START
-   ============================================================ */
+// Start
 load();
 render('today');
 $('foot').innerHTML = '<span id="offline-mark"></span>';
 window.addEventListener('beforeunload', save);
 
-/* The date line, the greeting, and every gestational age are computed from
-   the device clock at render time — nothing about them is stored, so they
-   are right on any given open. The gap is that the app can sit open for
-   hours during a birth and roll past midnight without a redraw, so re-check
-   when it returns to the foreground and once a minute while it is up.
-   Only the masthead and Today are redrawn: re-rendering a form in progress
-   would wipe whatever she had already entered. */
+// dates come from the clock at render time, so a session left open
+// through midnight goes stale. only redraw the masthead and Today —
+// re-rendering a form in progress would wipe what she'd typed.
 var lastDay = todayISO();
 function refreshIfDayChanged(){
   const d = todayISO();
@@ -2445,8 +2395,7 @@ document.addEventListener('visibilitychange', function(){ if(!document.hidden) r
 window.addEventListener('focus', refreshIfDayChanged);
 setInterval(refreshIfDayChanged, 60000);
 
-/* Offline support. Registration fails harmlessly when the app is opened
-   as a local file rather than served over https, so it is wrapped. */
+// fails harmlessly on file:// , hence the guard
 if('serviceWorker' in navigator && location.protocol === 'https:'){
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('sw.js').then(function(reg){
