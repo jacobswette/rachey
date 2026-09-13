@@ -1,21 +1,6 @@
 # Rachey
 
-**Charting for midwives.** A local-first documentation app for a CPM practice —
-prenatal visits, labor logging, postpartum and newborn notes — that runs
-entirely in the browser and sends nothing anywhere.
-
-![Rachey](screenshot.png)
-
-## Why it works this way
-
-Most charting tools solve the privacy problem with agreements. This one solves
-it by architecture: there is no server to send anything to. The whole app is a
-single HTML file. Notes are assembled by templates in the browser, not by a
-language model, which is why it works offline, costs nothing to run, and never
-transmits a patient detail.
-
-That constraint drove every other decision, and it is the part worth keeping if
-you fork this.
+Charting for midwives. A local-first documentation app for a CPM practice.
 
 ## Note types
 
@@ -129,40 +114,16 @@ Edit `index.html`, bump `CACHE = 'rachey-v1'` in `sw.js` to `v2`, and re-upload.
 Phones pick up the new version on the next launch. Without the cache bump they
 will keep serving the old copy from cache.
 
-## Backups matter more than usual here
+## There are no backups, on purpose
 
-Local-only cuts both ways. Clearing browser data, losing the phone, or deleting
-the installed app takes the records with it, and there is no copy on a server to
-restore from. Records, then "Export a backup", writes a JSON file. Weekly is a
-reasonable rhythm. "Restore from a backup" reads it back on any device.
+Nothing is stored, so there is nothing to back up. A note exists until it is
+copied into the EHR. A client stays on the caseload for the working session and
+then clears. If that sounds lossy, it is the point: a durable local copy of
+clinical notes would be a shadow record with no access control, no audit trail
+and no retention policy.
 
 ## Scope
 
 This is a drafting aid that produces text to copy into wherever the legal record
 actually lives. It is not itself the legal record, and the threshold reminders
 are memory prompts, not clinical guidance.
-
-## Running it
-
-Open `index.html` in a browser. That is the whole install.
-
-To deploy: any static host works. Drag the folder onto Cloudflare Pages or
-Netlify Drop, or push to a repo and enable GitHub Pages with the source set to
-the branch root. HTTPS is required — the service worker will not register over
-plain HTTP, and without it there is no offline mode.
-
-Shipping an update: edit `index.html`, then bump `CACHE = 'rachey-v1'` in
-`sw.js` to `v2` before re-uploading. Without the bump, browsers keep serving the
-cached copy.
-
-## Tests
-
-Six suites, 212 assertions, run under jsdom. They cover the note templates, the
-dictation parser, gestational-age arithmetic, the client hub, the live preview,
-and date rollover. There is no build step and no test runner config — each suite
-is a plain Node script.
-
-## License
-
-Not licensed for reuse. Published so the approach is visible, not as a template
-to fork. Ask if you want to do something with it.
