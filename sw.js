@@ -3,7 +3,7 @@
    It never touches clinical data: that lives in localStorage,
    which a service worker cannot read or transmit. */
 
-const CACHE = 'rachey-v1';
+const CACHE = 'rachey-v4';
 const CORE = [
   './',
   './index.html',
